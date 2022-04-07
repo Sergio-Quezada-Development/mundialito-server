@@ -7,6 +7,7 @@ import org.apache.http.HttpStatus;
 
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import mundialito.server.controller.request.LambdaRequest;
 import mundialito.server.controller.request.RequestContext;
@@ -23,6 +24,15 @@ public abstract class BasicController {
 
 	protected APIGatewayProxyResponseEvent createLambdaResponse(HttpStatus status, String body) {
 		return createLambdaResponse(status.hashCode(), body);
+	}
+	
+	protected String convertAsJSON(Object object) {
+		try {
+			return mapper.writeValueAsString(object);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			return "";
+		}
 	}
 	
 	@SuppressWarnings("unchecked")

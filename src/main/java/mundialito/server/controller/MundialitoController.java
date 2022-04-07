@@ -19,7 +19,7 @@ public class MundialitoController extends BasicController
 		
 		LambdaRequest request = getRequest(input);
 		
-		return createLambdaResponse(200, request.toString());
+		return createLambdaResponse(200, convertAsJSON(request));
 
 	}
 
