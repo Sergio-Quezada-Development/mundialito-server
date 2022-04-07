@@ -9,7 +9,13 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'java'
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
+
+group = 'mundialito.server'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -17,6 +23,22 @@ repositories {
 }
 
 dependencies {
+
+	// Amazon Lamda Libraries
+	implementation 'com.amazonaws:aws-lambda-java-core:1.2.1'
+	implementation 'com.amazonaws:aws-lambda-java-events:3.8.0'
+    implementation 'com.amazonaws:aws-java-sdk-dynamodb:1.12.9'
+    
+    // Lombok
+	compileOnly 'org.projectlombok:lombok:1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+	
+	// Google Libraries
+	implementation 'com.google.code.gson:gson:2.8.6'
+	
+	// Jackson
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
 
